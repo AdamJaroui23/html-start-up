@@ -1,196 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Task Manager</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Task Manager</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 </head>
+
 <body class="bg-slate-100 min-h-screen text-slate-800">
 
-  <main class="max-w-xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">Task Manager</h1>
+    <main class="max-w-xl mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">Task Manager</h1>
 
-    <!-- ===== Task form ===== -->
-    <form id="task-form" class="bg-white rounded-lg shadow p-4 space-y-3 mb-8">
-      <div>
-        <label for="title" class="block text-sm font-medium mb-1">Title</label>
-        <input
-          id="title"
-          type="text"
-          required
-          placeholder="e.g. Finish homework"
-          class="w-full border border-slate-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+        <!-- ===== Task form ===== -->
+        <form id="task-form" class="bg-white rounded-lg shadow p-4 space-y-3 mb-8">
+            <div>
+                <label for="title" class="block text-sm font-medium mb-1">Title</label>
+                <input id="title" type="text" required placeholder="e.g. Finish homework"
+                    class="w-full border border-slate-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
 
-      <div>
-        <label for="description" class="block text-sm font-medium mb-1">Description</label>
-        <textarea
-          id="description"
-          rows="3"
-          placeholder="What needs to be done?"
-          class="w-full border border-slate-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        ></textarea>
-      </div>
+            <div>
+                <label for="description" class="block text-sm font-medium mb-1">Description</label>
+                <textarea id="description" rows="3" placeholder="What needs to be done?"
+                    class="w-full border border-slate-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
 
-      <div>
-        <label for="status" class="block text-sm font-medium mb-1">Status</label>
-        <select
-          id="status"
-          class="w-full border border-slate-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="To do">To do</option>
-          <option value="In progress">In progress</option>
-          <option value="Done">Done</option>
-        </select>
-      </div>
+            <div>
+                <label for="status" class="block text-sm font-medium mb-1">Status</label>
+                <select id="status"
+                    class="w-full border border-slate-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="To do">To do</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Done">Done</option>
+                </select>
+            </div>
 
-      <button
-        type="submit"
-        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium rounded px-4 py-2"
-      >
-        Add task
-      </button>
-    </form>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium rounded px-4 py-2">
+                Add task
+            </button>
+        </form>
 
-    <!-- ===== Task list ===== -->
-    <div class="flex items-center justify-between mb-3">
-      <h2 class="text-xl font-semibold">Tasks</h2>
+        <!-- ===== Task list ===== -->
+        <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xl font-semibold">Tasks</h2>
 
-      <div class="flex items-center gap-2">
-        <label for="filter" class="text-sm font-medium">Filter</label>
-        <select
-          id="filter"
-          class="border border-slate-300 rounded px-3 py-1 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="All">All</option>
-          <option value="To do">To do</option>
-          <option value="In progress">In progress</option>
-          <option value="Done">Done</option>
-        </select>
-      </div>
-    </div>
-    <input
-      id="search"
-      type="search"
-      placeholder="Search tasks by title..."
-      class="w-full border border-slate-300 rounded px-3 py-2 mb-3 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-
-    <div class="flex items-center justify-between mb-3">
-      <p id="task-counter" class="text-sm text-slate-500">1 task, 0 done</p>
-      <button
-        id="clear-completed"
-        type="button"
-        class="text-sm text-red-600 hover:text-red-800 font-medium"
-      >
-        Clear completed
-      </button>
-    </div>
-
-    <p id="empty-message" class="text-slate-500 hidden">No tasks yet. Add one above.</p>
-    <ul id="task-list" class="space-y-3">
-      <!-- EXAMPLE task: shows how a task should look. Delete this <li> once your JavaScript works. -->
-      <li class="bg-white rounded-lg shadow p-4 flex items-start justify-between gap-4">
-        <div>
-          <h3 class="font-semibold">Finish homework</h3>
-          <p class="text-sm text-slate-600 mt-1">Complete the JavaScript exercises for Friday.</p>
-          <span class="inline-block text-xs bg-slate-200 rounded-full px-2 py-1 mt-2">In progress</span>
+            <div class="flex items-center gap-2">
+                <label for="filter" class="text-sm font-medium">Filter</label>
+                <select id="filter"
+                    class="border border-slate-300 rounded px-3 py-1 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="All">All</option>
+                    <option value="To do">To do</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Done">Done</option>
+                </select>
+            </div>
         </div>
-        <div class="flex flex-col items-end gap-2">
-          <select class="border border-slate-300 rounded px-2 py-1 text-xs bg-white">
-            <option value="To do">To do</option>
-            <option value="In progress" selected>In progress</option>
-            <option value="Done">Done</option>
-          </select>
-          <button class="text-sm text-red-600 hover:text-red-800 font-medium">
-            Delete
-          </button>
-        </div>
-      </li>
-    </ul>
-  </main>
+        <input id="search" type="search" placeholder="Search tasks by title..."
+            class="w-full border border-slate-300 rounded px-3 py-2 mb-3 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-  <!--
+        <div class="flex items-center justify-between mb-3">
+            <p id="task-counter" class="text-sm text-slate-500">1 task, 0 done</p>
+            <button id="clear-completed" type="button" class="text-sm text-red-600 hover:text-red-800 font-medium">
+                Clear completed
+            </button>
+        </div>
+
+        <p id="empty-message" class="text-slate-500 hidden">No tasks yet. Add one above.</p>
+        <ul id="task-list" class="space-y-3">
+            <!-- EXAMPLE task: shows how a task should look. Delete this <li> once your JavaScript works. -->
+            <li class="bg-white rounded-lg shadow p-4 flex items-start justify-between gap-4">
+                <div>
+                    <h3 class="font-semibold">Finish homework</h3>
+                    <p class="text-sm text-slate-600 mt-1">Complete the JavaScript exercises for Friday.</p>
+                    <span class="inline-block text-xs bg-slate-200 rounded-full px-2 py-1 mt-2">In progress</span>
+                </div>
+                <div class="flex flex-col items-end gap-2">
+                    <select class="border border-slate-300 rounded px-2 py-1 text-xs bg-white">
+                        <option value="To do">To do</option>
+                        <option value="In progress" selected>In progress</option>
+                        <option value="Done">Done</option>
+                    </select>
+                    <button class="text-sm text-red-600 hover:text-red-800 font-medium">
+                        Delete
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </main>
+
+    <!--
     Template for ONE task. Don't display it directly:
     clone it with JavaScript for every task you add.
   -->
-  <template id="task-template">
-    <li class="bg-white rounded-lg shadow p-4 flex items-start justify-between gap-4">
-      <div>
-        <h3 class="task-title font-semibold"></h3>
-        <p class="task-description text-sm text-slate-600 mt-1"></p>
-        <span class="task-status inline-block text-xs bg-slate-200 rounded-full px-2 py-1 mt-2"></span>
-      </div>
-      <div class="flex flex-col items-end gap-2">
-        <select class="task-status-select border border-slate-300 rounded px-2 py-1 text-xs bg-white">
-          <option value="To do">To do</option>
-          <option value="In progress">In progress</option>
-          <option value="Done">Done</option>
-        </select>
-        <button class="delete-btn text-sm text-red-600 hover:text-red-800 font-medium">
-          Delete
-        </button>
-      </div>
-    </li>
-  </template>
+    <template id="task-template">
+        <li class="bg-white rounded-lg shadow p-4 flex items-start justify-between gap-4">
+            <div>
+                <h3 class="task-title font-semibold"></h3>
+                <p class="task-description text-sm text-slate-600 mt-1"></p>
+                <span class="task-status inline-block text-xs bg-slate-200 rounded-full px-2 py-1 mt-2"></span>
+            </div>
+            <div class="flex flex-col items-end gap-2">
+                <select class="task-status-select border border-slate-300 rounded px-2 py-1 text-xs bg-white">
+                    <option value="To do">To do</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Done">Done</option>
+                </select>
+                <button class="delete-btn text-sm text-red-600 hover:text-red-800 font-medium">
+                    Delete
+                </button>
+            </div>
+        </li>
+    </template>
 
-  <script>
-    // ===== Students: your JavaScript goes here =====
+    <script>
+        // ===== Students: your JavaScript goes here =====
 
-    // Handy references (already selected for you)
-    const form = document.getElementById("task-form");
-    const titleInput = document.getElementById("title");
-    const descriptionInput = document.getElementById("description");
-    const statusSelect = document.getElementById("status");
-    const taskList = document.getElementById("task-list");
-    const filterSelect = document.getElementById("filter");
-    const searchInput = document.getElementById("search");
-    const taskCounter = document.getElementById("task-counter");
-    const clearCompletedBtn = document.getElementById("clear-completed");
-    const emptyMessage = document.getElementById("empty-message");
-    const taskTemplate = document.getElementById("task-template");
+        // Handy references (already selected for you)
 
-    // TODO 1: Listen for the form's "submit" event and prevent the page from reloading.
+        const form_info = document.getElementById("task-form");
+        const titleInput = document.getElementById("title");
+        const descriptionInput = document.getElementById("description");
+        const statusSelect = document.getElementById("status");
+        const taskList = document.getElementById("task-list");
+        const filterSelect = document.getElementById("filter");
+        const searchInput = document.getElementById("search");
+        const taskCounter = document.getElementById("task-counter");
+        const clearCompletedBtn = document.getElementById("clear-completed");
+        const emptyMessage = document.getElementById("empty-message");
+        const taskTemplate = document.getElementById("task-template");
 
-    // TODO 2: Read the title, description and status values from the form.
+        // TODO 1: Listen for the form's "submit" event and prevent the page from reloading.
+        form_info.addEventListener("submit", function (event) {
+            event.preventDefault();
 
-    // TODO 3: Clone the template (taskTemplate.content.cloneNode(true)),
-    //         fill in the title, description and status, then add it to taskList.
+            // TODO 2: Read the title, description and status values from the form.
+            const title = titleInput.value.trim();
+            if (!title) {
+                titleInput.focus();
+                return;
+            }
 
-    // TODO 4: Clear the form after adding a task.
+            const description = descriptionInput.value.trim();
+            const status = statusSelect.value;
 
-    // TODO 5: Make each task's Delete button remove that task from the list.
+            // TODO 3: Clone the template (taskTemplate.content.cloneNode(true)),
+            //         fill in the title, description and status, then add it to taskList.
+            const task = taskTemplate.content.cloneNode(true);
+            task.querySelector(".task-title").textContent = title;
+            task.querySelector(".task-description").textContent = description;
+            task.querySelector(".task-status").textContent = status;
+            task.querySelector(".task-status-select").value = status;
+            taskList.appendChild(task);
 
-    // TODO 6: Hide the "No tasks yet" message when there is at least one task,
-    //         and show it again when the list is empty.
+            // TODO 4: Clear the form after adding a task.
+            form_info.reset();
+        });
 
-    // TODO 7: Filter tasks by status. Listen for the "change" event on the filter select.
-    //         Show only the tasks whose status matches the selected value,
-    //         or all tasks when "All" is selected.
-    //         Hint: use classList.add("hidden") / classList.remove("hidden") on each task.
+        // TODO 5: Make each task's Delete button remove that task from the list.
 
-    // TODO 8: Task counter. Update taskCounter every time a task is added, deleted
-    //         or changes status (e.g. "3 tasks, 1 done").
+        // TODO 6: Hide the "No tasks yet" message when there is at least one task,
+        //         and show it again when the list is empty.
 
-    // TODO 9: Search. Listen for the "input" event on searchInput and show only the
-    //         tasks whose title contains the typed text (ignore upper/lower case).
-    //         It must work together with the status filter from TODO 7.
+        
 
-    // TODO 10: Change status. When the select inside a task card changes, update the
-    //          status badge text of that card (and the counter and the filter).
 
-    // TODO 11: Clear completed. When clearCompletedBtn is clicked, remove every task
-    //          whose status is "Done".
+        // TODO 7: Filter tasks by status. Listen for the "change" event on the filter select.
+        //         Show only the tasks whose status matches the selected value,
+        //         or all tasks when "All" is selected.
+        //         Hint: use classList.add("hidden") / classList.remove("hidden") on each task.
 
-    // ===== Extra challenges (JavaScript only) =====
-    // BONUS: Validate the form: show an error message if the title is empty or too short.
-    // BONUS: Color the status badge depending on its value (gray, yellow, green).
-    // BONUS: Sort tasks by title or by status.
-    // BONUS: Give each task a unique id and store all tasks in an array.
-    // BONUS: Save tasks in localStorage so they survive a page refresh.
-    //        Hint: write a render() function that draws the list from the array.
-  </script>
+        // TODO 8: Task counter. Update taskCounter every time a task is added, deleted
+        //         or changes status (e.g. "3 tasks, 1 done").
+
+        // TODO 9: Search. Listen for the "input" event on searchInput and show only the
+        //         tasks whose title contains the typed text (ignore upper/lower case).
+        //         It must work together with the status filter from TODO 7.
+
+        // TODO 10: Change status. When the select inside a task card changes, update the
+        //          status badge text of that card (and the counter and the filter).
+
+        // TODO 11: Clear completed. When clearCompletedBtn is clicked, remove every task
+        //          whose status is "Done".
+
+        // ===== Extra challenges (JavaScript only) =====
+        // BONUS: Validate the form: show an error message if the title is empty or too short.
+        // BONUS: Color the status badge depending on its value (gray, yellow, green).
+        // BONUS: Sort tasks by title or by status.
+        // BONUS: Give each task a unique id and store all tasks in an array.
+        // BONUS: Save tasks in localStorage so they survive a page refresh.
+        //        Hint: write a render() function that draws the list from the array.
+    </script>
 </body>
+
 </html>
