@@ -160,14 +160,30 @@
 
         updateEmptyMessage();
 
-
         // TODO 7: Filter tasks by status. Listen for the "change" event on the filter select.
         //         Show only the tasks whose status matches the selected value,
         //         or all tasks when "All" is selected.
         //         Hint: use classList.add("hidden") / classList.remove("hidden") on each task.
 
+        filterSelect.addEventListener("change", function () {
+            const selectedStatus = filterSelect.value;
+
+            for (let i = 0; i < taskList.children.length; i++) {
+                const task = taskList.children[i];
+                const status = task.querySelector(".task-status").textContent;
+
+                if (selectedStatus === "All" || status === selectedStatus) {
+                    task.classList.remove("hidden");
+                } else {
+                    task.classList.add("hidden");
+                }
+            }
+        });
+        
         // TODO 8: Task counter. Update taskCounter every time a task is added, deleted
         //         or changes status (e.g. "3 tasks, 1 done").
+
+
 
         // TODO 9: Search. Listen for the "input" event on searchInput and show only the
         //         tasks whose title contains the typed text (ignore upper/lower case).
