@@ -61,7 +61,7 @@
             class="w-full border border-slate-300 rounded px-3 py-2 mb-3 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
         <div class="flex items-center justify-between mb-3">
-            <p id="task-counter" class="text-sm text-slate-500">1 task, 0 done</p>
+            <p id="task-counter" class="text-sm text-slate-500">0 tasks, 0 done</p>
             <button id="clear-completed" type="button" class="text-sm text-red-600 hover:text-red-800 font-medium">
                 Clear completed
             </button>
@@ -137,6 +137,7 @@
             task.querySelector(".task-status").textContent = status;
             task.querySelector(".task-status-select").value = status;
             taskList.appendChild(task);
+            updateEmptyMessage();
 
             // TODO 4: Clear the form after adding a task.
             form_info.reset();
@@ -147,13 +148,17 @@
             const deleteButton = event.target.closest(".delete-btn");
             if (deleteButton) {
                 deleteButton.closest("li").remove();
+                updateEmptyMessage();
             }
         });
 
         // TODO 6: Hide the "No tasks yet" message when there is at least one task,
         //         and show it again when the list is empty.
+        function updateEmptyMessage() {
+            emptyMessage.classList.toggle("hidden", taskList.children.length > 0);
+        }
 
-        
+        updateEmptyMessage();
 
 
         // TODO 7: Filter tasks by status. Listen for the "change" event on the filter select.
